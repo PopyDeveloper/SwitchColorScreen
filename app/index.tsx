@@ -28,8 +28,6 @@ export default function Index() {
     }).start();
   }, []);
 
-
-  console.info(rotation);
   return (
     <Pressable
       onPress={handlePress}
