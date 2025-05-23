@@ -1,21 +1,12 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback } from "react";
 import { Animated, Pressable, StyleSheet } from "react-native";
+import { useAnimated } from "./hooks/useAnimated";
+import { useColors } from "./hooks/useColors";
 
 export default function Index() {
-  const [color, setColor] = useState("rgb(255, 255, 255)");
 
-  const switchColor = () => {
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 256);
-    let b = Math.floor(Math.random() * 256);
-    setColor(`rgb(${r}, ${g}, ${b})`);
-  }
-
-  const rotateValue = useRef(new Animated.Value(0)).current;
-  const rotation = rotateValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
+  const { color, switchColor } = useColors();
+  const { rotateValue, rotation } = useAnimated()
 
   const handlePress = useCallback(() => {
     rotateValue.setValue(0);
